@@ -1,16 +1,15 @@
 class Solution {
 public:
     int timeRequiredToBuy(vector<int>& tickets, int k) {
-                int time = 0;
-        int n = tickets.size();
-        
-        for (int i = 0; i < n; i++) {
-            time += min(tickets[i], tickets[k]);
-            if (i > k && tickets[i] >= tickets[k]) {
-                time--;
+                int target = tickets[k];
+        int time = 0;
+        for (int i = 0; i < tickets.size(); i++) {
+            if (i <= k) {
+                time += min(tickets[i], target);
+            } else {
+                time += min(tickets[i], target - 1);
             }
         }
-        
         return time;
     }
 };
